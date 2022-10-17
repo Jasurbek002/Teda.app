@@ -1,0 +1,16 @@
+.Navbar{
+    width: 100%;
+    display: flex;
+    padding: 0px;
+    box-shadow: rgba(5, 5, 225, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    position: fixed;
+    
+    &__logo{
+        margin: 0;
+        text-decoration: none;
+        background-color: rgb(16, 14, 14);
+        color: blueviolet;
+        padding: 20px 120px;
+        font-size: 25px;
+    }
+}
