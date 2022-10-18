@@ -1,0 +1,10 @@
+.Modal{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 999;
+    background-color: rgb(176, 193, 197);
+    width: 500px;
+    height: 500px;
+    padding: 20px;
+}
