@@ -9,20 +9,40 @@
     align-items: center;
     justify-content: space-between;
     &__items{
-        padding: 10px;
+       
+        position: relative;
+        padding:20px 10px;
         width: 350px;
         margin: 10px;
-        text-align: center;
-        background-color: aliceblue;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+        background-color: rgb(255, 255, 255);
+        border-radius: 20px;
         box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;        &__img{
             width: 90%;
-            height: 200px;
+            height: 200px; 
+            border-radius: 10px; 
         }
+        &__price{
+            color: rgb(255, 255, 255);
+            padding: 7px;
+            background-color: rgb(89, 53, 137);
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-radius: 20px;
+        }
+     
         &__name{
-            color: blue;
+            color: rgb(107, 104, 104);
             margin: 0;
         }
+        &__desc{
+          text-align: start;
+        }
         &__btns{
+            margin-top: 30px;
             width: 90%;
             display: flex;
             align-items: center;

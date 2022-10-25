@@ -5,7 +5,7 @@ import Navbar from '../Navbar/navbar';
 import styles from './home.module.scss'
 const Home = () => {
   const [modal,setModal] = useState(false)
-
+  const [putId,setPutId] = useState(0)
     const addMaodal = () =>{
       setModal(true)
     }
@@ -14,15 +14,15 @@ const Home = () => {
         <>
       <Navbar />
          <div className={styles.Home}>
-           <div className={styles.Home__sitebar}>
+           {/* <div className={styles.Home__sitebar}>
             <ul>
               sitebar
             </ul>
-           </div>
+           </div> */}
            <div className={styles.Home__box}>
             <button onClick={addMaodal} className={styles.Home__box__add}>add product</button>
-               <Card />
-                { modal ? <Modal setModal={setModal} /> : '' }
+               <Card setModal={setModal} setPutId={setPutId}/>
+                { modal ? <Modal setModal={setModal} putId={putId} /> : '' }
            </div>
            </div>
         </>
