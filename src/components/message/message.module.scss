@@ -1,4 +1,6 @@
-.Massage{
+.Message{
+    top: 80%;
+    left: 20px;
     position: absolute;
     display: flex;
     align-items: center;
@@ -7,5 +9,9 @@
     max-width: 400px;
     padding: 20px;
     background-color: white;
-    border: 3px solid rgba(0, 0, 255, 0.379);
+    border: 5px solid rgba(0, 0, 255, 0.171);
+    border-radius: 20px;
+    &__title{
+        color: red;
+    }
 }

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import styles from './card.module.scss'
 
-const Card = ({setModal ,setPutId}) => {
+const Card = ({ padding , setModal ,setPutId,setToos,setMessage}) => {
     const [data,setData] = useState([])
     const token = window.localStorage.getItem('token')
     useEffect(() =>{
@@ -27,7 +27,11 @@ const Card = ({setModal ,setPutId}) => {
             }
         })
         response = await response.json()
-        console.log(response)
+        setMessage(response.message)
+        setToos(true)
+        setTimeout(() =>{
+            setToos(false)
+        },5000)
     }
 
     const putProduct = (id) =>{
@@ -37,7 +41,7 @@ const Card = ({setModal ,setPutId}) => {
     }
 
     return (
-        <div className={styles.Card}>
+        <div style={{paddingRight:`${padding}px`}} className={styles.Card}>
             {
                 data?.map((el,index) =>{
                   

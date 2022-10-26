@@ -3,10 +3,10 @@ import styles from './modal.module.scss'
 import xicon from '../../assets/58253.png'
 import upload from '../../assets/upload.png'
 
-const Modal = ({setModal,putId}) => {
+const Modal = ({setModal,putId,setToos,setMessage}) => {
        console.log(putId)
     const token = window.localStorage.getItem('token')
-    const [message,setMessage] = useState('')
+    
     const [category,setCatgeory] = useState([])
     const [brand,setBrand] = useState([])
     const [measurement,setMeasurement] = useState([])
@@ -80,8 +80,9 @@ const Modal = ({setModal,putId}) => {
     formData.append("priceList[0].price", priceType);
     formData.append("photos[0]",photos,photos.type)
      
-         fetch('https://profitmodel-server.herokuapp.com/api/product'+ putId ? putId : '',{
-            method: putId ? 'put' : 'post',
+      
+    putId ?   fetch(`https://profitmodel-server.herokuapp.com/api/product/${putId}`,{
+            method:'put',
             headers:{
                 'Contenet-type':'application/json',
                 'Authorization': `Bearer ${token}`,
@@ -89,12 +90,34 @@ const Modal = ({setModal,putId}) => {
             body:formData
         })
         .then(res => res.json())
-        .then(res => console.log(res))
-    
+        .then(res => {
+            setMessage(res.message)
+             setToos(true)
+             setTimeout(() =>{
+                setToos(false)
+             },5000)
+        })
+
+        :
+
+        fetch('https://profitmodel-server.herokuapp.com/api/product',{
+            method:'post',
+            headers:{
+                'Contenet-type':'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body:formData
+        })
+        .then(res => res.json())
+        .then(res =>{
+            setMessage(res.message)
+             setToos(true)
+             setTimeout(() =>{
+                setToos(false)
+           },5000)
+        })
    }
-
-    
-
+   
 
     return (
         <div className={styles.Modal}>
@@ -129,13 +152,13 @@ const Modal = ({setModal,putId}) => {
             </select>
 
             <input placeholder='code' onChange={(e) => setCodeList(e.target.value) } className={styles.Modal__input} type="text" />
-            <input placeholder='price' onChange={(e) => setPriceList(e.target.value) } className={styles.Modal__input} type="text" />
-            <input placeholder='type' onChange={(e) => setPriceType(e.target.value) } className={styles.Modal__input} type="text" />
+            <input placeholder='type' onChange={(e) => setPriceList(e.target.value) } className={styles.Modal__input} type="text" />
+            <input placeholder='price' onChange={(e) => setPriceType(e.target.value) } className={styles.Modal__input} type="text" />
             <input  onChange={(e) => setPhotos(e.target.files[0]) } className={styles.Modal__file} type="file" />
             <img className={styles.Modal__uploat} src={upload} alt="upload" />
             <button className={styles.Modal__btn} onClick={addProduct}>Add</button>
         </div>
-    );
-}
+  )};
+
 
 export default Modal;
